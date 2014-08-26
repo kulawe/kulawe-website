@@ -1,0 +1,16 @@
+<div id='lastest-blog-post'>
+<h2>Latest Blog Post</h2>
+		{{ range first 1 .Site.Recent }}
+			<h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
+			<p>Published on: {{ .Date.Format "Mon, Jan 2, 2006" }}
+			<nobr>Tags: {{ range $tag := .Params.tags }} 
+				 <a href="/tags/{{ $tag | urlize }}">{{ $tag }}</a>
+				{{ end }}
+			</nobr>
+			</p>
+			{{ .Summary }}
+			<p>
+			<a href='{{ .Permalink }}'><nobr>Continue reading &rsaquo;</nobr></a>
+			</p>
+		{{ end }}
+</div>

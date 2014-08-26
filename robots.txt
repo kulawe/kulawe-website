@@ -1,0 +1,24 @@
+#
+# Robots.txt - prevent web-crawlers from looking in "private" directories
+#
+# For more information about the robots.txt standard, see:
+# http://www.robotstxt.org/orig.html
+#
+# For syntax checking, see:
+# http://www.sxw.org.uk/computing/robots/check.html
+
+User-agent: *
+Disallow: /logs/
+Disallow: /images/
+Disallow: /stylesheet/
+Disallow: /stylesheets/
+Disallow: /contact-form-illegal-email/
+Disallow: /contact-form-illegal-name/
+Disallow: /contact-form-illegal-name/
+Disallow: /contact-form-illegal-subject/
+Disallow: /contact-form-missing-email/
+Disallow: /contact-form-missing-name/
+Disallow: /contact-form-missing-name/
+Disallow: /contact-form-missing-subject/
+Disallow: /contact-us-error/
+

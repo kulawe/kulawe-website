@@ -1,0 +1,15 @@
+{{ template "partials/meta-head.html" . }}
+<body class='two-col'>
+<div id='container'>
+	{{ template "partials/header.html" . }}
+	{{ template "partials/menu.html" . }}
+
+	<div id='content'>
+		{{ .Content }}
+	</div>
+	{{ template "partials/blog-sidebar.html" . }}
+
+	{{ template "partials/footer.html" . }}
+</div>
+</body>
+

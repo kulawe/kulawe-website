@@ -1,0 +1,5 @@
+baseurl = "http://www.kulawe.com"
+languageCode = "en-uk"
+title = "Kulawe Limited"
+[permalinks]
+    blog = "/:year/:month/:title/"

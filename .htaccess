@@ -1,0 +1,63 @@
+#
+# .htaccess
+#
+# NB This file can be parsed multiple times. Each time a RewriteRule
+# that is marked as a Last [L] (aka break) rule is executed the new
+# URL will be processed against the remaining rewrite rules. 
+# So remember to NOT conditions from the top of the file in later
+# rules. See the rules that execute the "/blog" URL.
+#
+# Blog setup
+# Requests to the URL /blog/ are handles transparently. This file
+# mustensure that any request to /blog/ is not rewritten, or the
+# blog will be broken.
+
+# Standard.htaccess setup - required to use the Rewrite rules.
+Options +FollowSymLinks
+Options -indexes
+## Mod_rewrite in use.
+RewriteEngine On
+
+## Set up the erro rlog to a local directory
+#ErrorLog "logs/error_log"
+
+## add cgi for python?
+#Options +ExecCGI
+#AddHandler cgi-script .pl
+
+
+## Root directory handling
+#
+# The website is located on the root of the domain
+#
+RewriteBase /
+#
+## End root directory handling
+
+## Base URL handling
+#
+# If the URL is kulawe.com OR www.kulawe.com (case insenstive) then
+# we need to apply rewrite rules.
+RewriteCond %{HTTP_HOST} ^kulawe.com$ [NC,OR]
+RewriteCond %{HTTP_HOST} ^www.kulawe.com$ [NC]
+#
+
+# from http://www.webmasterworld.com/search_engine_spiders/4352766.htm
+# The site is beng constantly scanned by this ahrefs bot form the Ukraine 
+# see also
+# http://blocklistpro.com/content-scrapers/ahrefsbot-seo-spybots.html
+# Deny spam bots
+Deny from 213.186.96.0 - 213.186.127.255
+
+# block based in the user agent header
+<IfModule mod_setenvif.c>
+        # some legit users pass blank heders e.g. google+ thumbnails, some
+        # mobile browsers.
+        # SetEnvIfNoCase User-Agent ^$ keep_out
+        BrowserMatchNoCase AhrefsBot ahrefs_block
+	BrowserMatchNoCase SiteBot ahrefs_block
+        Order Allow,Deny
+        Allow from all
+        Deny from env=ahrefs_block
+</IfModule>
+

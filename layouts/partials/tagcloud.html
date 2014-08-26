@@ -1,0 +1,7 @@
+<div id='tagcloud'>
+	<br>
+	<h2>Tag Cloud</h2>
+	{{ range $name, $taxonomy := .Site.Taxonomies.tags }}
+		<nobr><a href="/tags/{{ $name | urlize }}"> {{ $name }} </a></nobr>
+	{{ end }}
+</div>

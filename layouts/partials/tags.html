@@ -1,0 +1,10 @@
+<div id="tag-list">
+	<h2 id="title">{{ .Title }}</h2>
+	<p>This is the list of tags related to articles on this site. The number of articles relating to a tag is shown in square brackets.</p>
+	<ul>
+		{{ $data := .Data }}
+		{{ range $key, $value := .Data.Terms }}
+			<li><a href="/{{ $data.Plural }}/{{ $key | urlize }}"> {{ $key }} </a> [{{ len $value }}] </li>
+		{{ end }}
+	</ul>
+</div>

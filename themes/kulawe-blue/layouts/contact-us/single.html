@@ -1,0 +1,17 @@
+{{ template "partials/meta-head.html" . }}
+<body class='two-col'>
+<div id='container'>
+	{{ template "partials/header.html" . }}
+	{{ template "partials/menu.html" . }}
+
+	<div id='content'>
+		{{ .Content }}
+		{{ template "partials/contact-us-form.html" . }}
+		{{ template "partials/registered-office-address.html" . }}
+	</div>
+	{{ template "partials/sidebar.html" . }}
+
+	{{ template "partials/footer.html" . }}
+    </div>
+    </body>
+
