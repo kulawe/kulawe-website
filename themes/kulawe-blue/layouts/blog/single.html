@@ -5,6 +5,7 @@
 	{{ template "partials/menu.html" . }}
 
 	<div id='content'>
+		<h2>{{ .Title }}</h2>
 		{{ .Content }}
 	</div>
 	{{ template "partials/blog-sidebar.html" . }}
