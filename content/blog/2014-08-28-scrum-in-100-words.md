@@ -4,6 +4,7 @@ title: "Scrum in 100 Words"
 author: Owen
 type: "blog"
 tags: ["scrum"]
+series: ["Scrum Basics"]
 ---
 The idea for this blog post came from a conversation I had a few weeks ago. I
 was at a business networking event and was asked to described what Scrum was
