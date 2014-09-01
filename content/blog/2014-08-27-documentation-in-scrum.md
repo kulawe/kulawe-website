@@ -4,6 +4,7 @@ title: "Documentation in Scrum"
 type: "blog"
 author: Owen
 tags: ["scrum"]
+series: ["Scrum Tips"]
 ---
 Good documentation as important to a project that uses the Scrum project mangement approach as any other approach. But often Scrum teams don’t see it that way. Team members will often justify the lack of documentation by quoting the following line from the Agile Manifesto.
 <!--more-->
