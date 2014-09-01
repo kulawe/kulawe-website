@@ -1,0 +1,16 @@
+<div id='blogs-by-series'>
+	{{ $pages := .Data.Pages }}
+	{{ $page := index $pages 0 }}
+	{{ $seriesname := (index $page.Params.series 0) }}
+	<h2 id="title">{{ $seriesname | title }}</h2>
+	 {{ range .Data.Pages }}
+	 	<header>
+			<h2><a href="{{ .Permalink }}">{{ .Title }} {{ if .Draft }}:: DRAFT{{end}}</a> </h2>
+			<div class="post-meta">{{ .Date.Format "Mon, Jan 2, 2006" }} - {{ .FuzzyWordCount }} Words </div>
+		</header>
+		{{ .Summary }}
+		<footer>
+			<a href='{{ .Permalink }}'><nobr>Continue reading &rsaquo;</nobr></a>
+		</footer>
+	 {{ end }}
+</div>

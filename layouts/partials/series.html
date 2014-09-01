@@ -1,0 +1,13 @@
+<div id="series-list">
+	<h2 id="title">{{ .Data.Singular | title }}</h2>
+	<p>This is the list of all of the series of articles on this site. The number of articles in the series is shown in square brackets.</p>
+	<ul>
+		{{ $data := .Data }}
+		{{ range $key, $value := .Data.Terms }}
+			{{ $page := index $value 0 }}
+			{{ $series := $page.Page.Params.series }}
+			{{ $seriesname := index $series 0 }}
+			<li><a href="/{{ $data.Plural }}/{{ $key | urlize }}"> {{ $seriesname }} </a> [{{ len $value }}] </li>
+		{{ end }}
+	</ul>
+</div>

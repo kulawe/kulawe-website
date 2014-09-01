@@ -7,10 +7,25 @@
 	<div id='content'>
 		<h2>{{ .Title }}</h2>
 		{{ .Content }}
+		<div id='series'>
+			{{ if .Params.series }}
+				{{ $name := index .Params.series 0 }}
+		        	<hr/>
+				<p><a href="" id="series"></a>This is a post in the 
+				<b>{{$name}}</b> series.<br/>
+				Other posts in this series:</p>
+				{{ $name := $name | urlize }}
+				{{ $series := index .Site.Taxonomies.series $name }}
+				<ul class="series">
+					{{ range $series.Pages }}
+						<li>{{.Date.Format "Jan 02, 2006"}} - <a href="{{.Permalink}}">{{.LinkTitle}}</a></li>
+					{{end}}
+				</ul>
+			{{end}} 
+		</div>
 	</div>
-	{{ template "partials/blog-sidebar.html" . }}
-
-	{{ template "partials/footer.html" . }}
+		{{ template "partials/blog-sidebar.html" . }}
+		{{ template "partials/footer.html" . }}
 </div>
 </body>
 
