@@ -48,9 +48,6 @@ jobs:
           SSH_HOST: ${{ secrets.KULAWE_SERVER_HOSTNAME }}
           SSH_PORT: ${{ secrets.KULAWE_SERVER_PORT }}
 
-      - name: List public dir
-        run: ssh kulawe.com 'whoami; ls -l ~/public'
-
       - name: Delete kulawe.com on remote
         run: ssh kulawe.com 'rm -rf ~/kulawe.com'
         
