@@ -1,9 +1,9 @@
 baseurl = "http://www.kulawe.com"
 languageCode = "en-uk"
 title = "Kulawe Limited"
+theme = "kulawe-blue"
 [permalinks]
     blog = "/:year/:month/:title/"
 [Taxonomies]
 	tag = "tags"
 	series = "series"
-
