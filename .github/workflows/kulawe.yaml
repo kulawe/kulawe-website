@@ -40,6 +40,7 @@ jobs:
             User $SSH_USER
             Port $SSH_PORT
             IdentityFile ~/.ssh/kulawe.key
+            StrictHostKeyChecking no
           END
         env:
           SSH_KEY: ${{ secrets.KULAWE_SERVER_SSH_KEY }}
