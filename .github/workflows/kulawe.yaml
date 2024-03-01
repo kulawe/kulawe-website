@@ -58,14 +58,14 @@ jobs:
         run: scp -r ./public/* kulawe.com:~/kulawe.com/
 
       - name: Stop nginx
-        run: ssh kulawe.com 'sudo systemctl stop nginx.service'
+        run: ssh kulawe.com 'sudo /usr/bin/systemctl stop nginx.service'
 
       - name: Copy website pages and assets to /var/www on remote
-        run: ssh kulawe.com 'sudo cp -r ~/kulawe.com/* /var/www/kulawe.com/'
+        run: ssh kulawe.com 'sudo /usr/bin/cp -r ~/kulawe.com/* /var/www/kulawe.com/'
 
       - name: Restart nginx
         if: ${{ always() }}
-        run: ssh kulawe.com 'sudo systemctl restart nginx.service'
+        run: ssh kulawe.com 'sudo /usr/bin/systemctl restart nginx.service'
 
       - name: Delete ssh dir
         if: ${{ always() }}
