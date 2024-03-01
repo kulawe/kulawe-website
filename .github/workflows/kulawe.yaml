@@ -1,0 +1,75 @@
+name: Kulawe_Build_And_Deploy
+on: [push, pull_request]
+jobs:
+  deploy:
+    name: "Deploy to kulawe.com"
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4      # the repo will be checked out to ~/work/website/website - subsequent commands run inside this directory. This is the GITHUB_WORKSPACE env var value
+
+      - name: Listing
+        run: |
+          ls -al
+
+      - name: Download and install hugo
+        run: |
+          RELEASE=`curl  "https://api.github.com/repos/gohugoio/hugo/tags" | jq -r '.[0].name'`
+          echo $RELEASE   
+          RELEASENOV="${RELEASE:1}"
+          echo $RELEASENOV 
+          curl -L "https://github.com/gohugoio/hugo/releases/download/${RELEASE}/hugo_${RELEASENOV}_linux-amd64.deb" --output ./hugo_${RELEASENOV}_linux-amd64.deb
+          sudo apt-get install ./hugo_${RELEASENOV}_linux-amd64.deb
+
+      - name: Build Website
+        run: |
+          pwd
+          ls -l ~/
+          hugo
+          ls -l ./public
+
+      - name: Configure SSH
+        run: |
+          mkdir -p ~/.ssh/
+          echo "$SSH_KEY" > ~/.ssh/kulawe.key
+          chmod 600 ~/.ssh/kulawe.key
+          cat >>~/.ssh/config <<END
+          Host kulawe.com
+            HostName $SSH_HOST
+            User $SSH_USER
+            Port $SSH_PORT
+            IdentityFile ~/.ssh/kulawe.key
+          END
+        env:
+          SSH_KEY: ${{ secrets.KULAWE_SERVER_SSH_KEY }}
+          SSH_USER: ${{ secrets.KULAWE_SERVER_USERNAME }}
+          SSH_HOST: ${{ secrets.KULAWE_SERVER_HOSTNAME }}
+          SSH_PORT: ${{ secrets.KULAWE_SERVER_PORT }}
+
+      - name: List public dir
+        run: ssh kulawe.com 'whoami; ls -l ~/public'
+
+      - name: Delete kulawe.com on remote
+        run: ssh kulawe.com 'rm -rf ~/kulawe.com'
+        
+      - name: Make kulawe.com on the remote
+        run: ssh kulawe.com 'mkdir ~/kulawe.com'
+
+      - name: Copy website pages and assets
+        run: scp -r ./public/* kulawe.com:~/kulawe.com/
+
+      - name: Stop nginx
+        run: ssh kulawe.com 'sudo service nginx stop'
+
+      - name: Copy website pages and assets to /var/www on remote
+        run: ssh kulawe.com 'sudo cp -r ~/kulawe.com/* /var/www/kulawe.com/'
+
+      - name: Restart nginx
+        if: ${{ always() }}
+        run: ssh kulawe.com 'sudo service nginx restart'
+
+      - name: Delete ssh dir
+        if: ${{ always() }}
+        run: |
+          rm -rf ~/.ssh
