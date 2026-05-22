@@ -7,11 +7,11 @@ Last updated: 24/5/2021
 ## Our contact details 
 
 FAO: Data Controller  
-6B Upper Water Street  
-Newry  
-County Down  
-Northern Ireland  
-BT34 1DJ
+2 Orpen Shopping Centre
+Upper Lisburn Road
+Finaghy
+Belfast
+BT10 0BG 
 
 E-mail:	Please use the [contact us](/contact-us) form.
  
@@ -85,11 +85,11 @@ Please contact us by post at
 
 FAO: Data Controller  
 Kulawe Limited  
-6B Upper Water Street  
-Newry  
-County Down  
-Northern Ireland  
-BT34 1DJ  
+2 Orpen Shopping Centre
+Upper Lisburn Road
+Finaghy
+Belfast
+BT10 0BG 
 
 or contact us via the [contact us](/contact-us) form if you wish to make a request.
 
@@ -98,11 +98,11 @@ If you have any concerns about our use of your personal information, you can mak
 
 FAO: Data Controller  
 Kulawe Limited  
-6B Upper Water Street  
-Newry  
-County Down  
-Northern Ireland  
-BT34 1DJ  
+2 Orpen Shopping Centre
+Upper Lisburn Road
+Finaghy
+Belfast
+BT10 0BG 
 
 E-mail:	Please use the [contact us](/contact-us) form.
 
